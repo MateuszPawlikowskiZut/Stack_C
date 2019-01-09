@@ -15,35 +15,47 @@ Stack *top = NULL;
 
 void Push(int item)
 {
+	//Tworzenie nowego wskaznika do struktury stosu
 	Stack *newStack = (Stack*)malloc(sizeof(Stack));
 	
+	//Zapisanie danej wartosci do nowego elementu stosu
 	newStack->value = item;
 	
+	//Zapisanie poprzedniego elementu do wskaznika w nowym elemencie 
 	newStack->prev = top;
 	
+	//Ustawienie wskaznika top na nowy element
 	top = newStack;
 }
 
 int Pop()
 {
+	//Jezeli stos jest pusty to zwroc -1
 	if(top == NULL) return -1;
 	
+	//Zapisz w zmiennej pomocniczej wartosc z wyciaganego elementu
 	int item = top->value;
 	
+	//Zapisane we wskazniku pomocniczym wskaznika do nastepnego elementu
 	Stack *_prev = top->prev;
 	
+	//Wyczyszczenie aktualnego elementu
 	free(top);
 	
+	//Ustawienie poprzedniego elementu jako akualny element.
 	top = _prev;
 	
+	//Zwrocenie wartosci z wyciaganego elementu
 	return item;
 }
 
 int Peek()
 {
+	//Jezeli stos jest pusty to zwroc -1
 	if(top == NULL)
 		return -1;
 	
+	//Wyciagnij wartosc z aktualnego elementu bez jego usuwania
 	return top->value;
 }
 
